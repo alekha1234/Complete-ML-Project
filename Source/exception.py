@@ -76,13 +76,3 @@ class CustomException(Exception):
         str: The detailed error message.
         """
         return self.error_message
-
-
-# Example usage
-if __name__ == "__main__":
-    try:
-        # Simulate an error
-        1 / 0
-    except Exception as e:
-        # Raise a CustomException and log the error
-        raise CustomException(e, sys)

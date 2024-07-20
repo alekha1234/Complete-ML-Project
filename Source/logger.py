@@ -4,7 +4,7 @@ from datetime import datetime
 
 # Generate a folder name based on the current date
 current_date = datetime.now().strftime('%d_%m_%Y')
-logs_path = os.path.join(os.getcwd(), "logs", current_date)
+logs_path = os.path.join(os.getcwd(), "All_Logs", current_date)
 
 # Create the logs directory for the current date if it doesn't exist
 os.makedirs(logs_path, exist_ok=True)
