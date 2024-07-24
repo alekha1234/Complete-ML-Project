@@ -13,7 +13,7 @@ from Source.components.data_transformation import DataTransformation
 from Source.components.data_transformation import DataTransformationConfig
 
 # import model trainer
-from Source.components.model_trainer import ModelTrainingConfig
+from Source.components.model_trainer import ModelTrainerConfig
 from Source.components.model_trainer import ModelTrainer
 
 @dataclass
@@ -60,6 +60,8 @@ class DataIngestion:
             # Read the dataset
             df = pd.read_csv('notebook\stud.csv')
             logging.info('Read the dataset as dataframe')
+            print("Reading the data........")
+            print(df.head())
 
             # Create directory if it doesn't exist
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -68,6 +70,7 @@ class DataIngestion:
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
 
             logging.info("Train test split initiated")
+            print("Spliting the data into train & test ......")
 
             # Split the data into training and test sets
             train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
@@ -91,7 +94,7 @@ if __name__ == "__main__":
     # Create an instance of DataIngestion
     obj = DataIngestion()
     train_data , test_data = obj.initiate_data_ingestion()
-    print("data ingestion is Completed.")
+    print("data ingestion is Completed.............")
 
     data_transformation = DataTransformation()
     train_arr , test_arr , _ = data_transformation.initiate_data_transformation(train_path=train_data , test_path=test_data)
@@ -100,5 +103,6 @@ if __name__ == "__main__":
     print("test_arr : " ,test_arr.shape)
 
     model_trainer = ModelTrainer()
+    print("Model training is Started ...............")
     print(model_trainer.initiate_model_trainer(train_array=train_arr ,test_array=test_arr))
-    print("Model training is completed.")
+    

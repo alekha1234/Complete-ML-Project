@@ -15,7 +15,7 @@ from Source.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join("Created_data" ,"processor.pkl")
+    preprocessor_obj_file_path = os.path.join("Created_data" ,"preprocessor.pkl")
 
 
 
@@ -46,6 +46,7 @@ class DataTransformation:
 
             logging.info("Categorical & Numerical Encoding is Completed ....")
 
+            print("Transforming Columns..................")
 
             preprocessor = ColumnTransformer(
                 [
@@ -80,7 +81,7 @@ class DataTransformation:
                 f"Applying preprocessing object on training dataframe and testing dataframe."
             )
 
-
+            print("Applying Preprocessor ............")
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 

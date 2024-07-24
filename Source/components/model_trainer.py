@@ -13,21 +13,22 @@ from sklearn.metrics import r2_score,mean_squared_error
 from Source.exception import CustomException
 from Source.logger import logging
 
-from Source.utils import save_object
-from Source.utils import evaluate_models
+from Source.utils import save_object , evaluate_models
+
 
 @dataclass
-class ModelTrainingConfig:
+class ModelTrainerConfig:
     trained_model_file_path = os.path.join("Created_data" , "model.pkl")
 
 class ModelTrainer:
     def __init__(self):
-        self.model_trainer_config = ModelTrainingConfig()
+        self.model_trainer_config = ModelTrainerConfig()
 
 
     def initiate_model_trainer(self , train_array ,test_array):
         try:
-            logging.info("Spliting training and testing ")
+            print("Spliting Training and Testing data.........")
+            logging.info("Spliting training and testing ........")
             X_train, y_train, X_test ,y_test = (
                 train_array[:,:-1] , train_array[:,-1] ,
                 test_array[:,:-1] , test_array[:,-1]
@@ -54,6 +55,7 @@ class ModelTrainer:
             best_model = models[best_model_name]
 
             if best_model_score < 0.6 :
+                print("No best model found on both training & testing....")
                 raise CustomException("No best model Found")
             
             print("Best model found on both training & testing....")

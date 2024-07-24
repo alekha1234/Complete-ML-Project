@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Generate a folder name based on the current date
 current_date = datetime.now().strftime('%d_%m_%Y')
-logs_path = os.path.join(os.getcwd(), "logs", current_date)
+logs_path = os.path.join(os.getcwd(), "My_Logs", current_date)
 
 # Create the logs directory for the current date if it doesn't exist
 os.makedirs(logs_path, exist_ok=True)
@@ -41,7 +41,7 @@ def error_message_details(error, error_detail: sys):
     file_name = exc_tb.tb_frame.f_code.co_filename
     
     # Formats the error message to include the filename, line number, and error message
-    error_message = "\n Error occurred in : [{0}] \n Line number : [{1}] \n Error message : [{2}]".format(
+    error_message = "Error occurred in : [{0}] \n Line number : [{1}] \n Error message : [{2}]".format(
         file_name, 
         exc_tb.tb_lineno, 
         str(error)
